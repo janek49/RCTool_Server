@@ -6,7 +6,7 @@ namespace RCTool_Server.Client.OutboundPackets
     {
         public enum EnumDataType
         {
-            CLIENT_LIST, SYSTEM_DATA, NETWORK_DATA
+            CLIENT_LIST, WEBCAM_LIST, SYSTEM_DATA, NETWORK_DATA
         }
 
         public EnumDataType DataType;

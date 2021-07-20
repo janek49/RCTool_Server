@@ -21,7 +21,8 @@ namespace RCTool_Server.Client
         {
             {0x0, typeof(InboundPacket00KeepAlive)},
             {0x1, typeof(InboundPacket01Identify)},
-            {0x2, typeof(InboundPacket02DataResponse)}
+            {0x2, typeof(InboundPacket02DataResponse)},
+            {0x3, typeof(InboundPacket03WebCam)}
         };
  
         public void HandleRawPacket(RcSession client, byte[] bytes, DateTime whenReceived)
@@ -35,7 +36,7 @@ namespace RCTool_Server.Client
                     var packetId = stream.ReadInt16();
 
                     if (packetId == 0)
-                        return;
+                        client.LastKeepAliveReceived = DateTime.Now.Ticks;
 
                     if (!_inboundPacketDict.ContainsKey(packetId))
                         throw new InvalidOperationException("Invalid packet id: " + packetId);

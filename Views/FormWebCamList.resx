@@ -117,35 +117,36 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="exit" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\exit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Info" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Info.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="apply" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\apply.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Left-right" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Left-right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="kdmconfig" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\kdmconfig.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Ok" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Ok.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Cancel" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Cancel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="icons8-checkmark-16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8-checkmark-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Stop" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Stop.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Delete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <metadata name="imgListWebCam.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <data name="imgListWebCam.ImageStream" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
+        LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
+        ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAAg
+        BQAAAk1TRnQBSQFMAwEBAAEoAQABKAEAARABAAEQAQAE/wEhAQAI/wFCAU0BNgcAATYDAAEoAwABQAMA
+        ARADAAEBAQABIAYAARAWAAMEAQYDCQEMAwoBDQMHAQoDBgEIAwcBCQMKAQ4DEAEWAxMBGgMTARoDEAEW
+        AwoBDgMHAQkDBgEIAwMBBMAAAwQBBgMQARUDFgEfAxcBIAMWAR4DFAEbAygBPANWAbgDSwH6A0sB+gNV
+        AboDLAFEAxgBIQMUARwDFAEbAw4BE8AAAWwCagHcA6cB/wOYAf8DUwH/A5gB/wOMAf8DSwH/A5kB/wPU
+        Af8D1AH/A5kB/wNLAf8DjAH/A4UB9QNgAdQDFwEgwAABkwKRAf8DuwH/A5gB/wM9Af8BvAG6AbkB/wNl
+        Af8DmwH/Ar0BvAH/AVwBXQFXAf8BXAFdAVcB/wK7AboB/wObAf8DZgH/A+cB/wNtAf8DGAEhwAABkwKR
+        Af8DuwH/A5gB/wM9Af8BvAG6AbkB/wNHAf8D1gH/AVwBXQFXAf8BTAFNAUcB/wHDAawBlQH/AccBsAGZ
+        Af8D1gH/A0cB/wPnAf8DbAH/AxgBIcAAAZMCkQH/A7sB/wOYAf8DPQH/AbwBugG5Af8DRwH/A9YB/wFc
+        AV0BVwH/AUwBTQFHAf8B7wHqAeQB/wHHAbABmQH/A9YB/wNGAf8D5wH/A2wB/wMYASHAAAGTApEB/wO7
+        Af8DmAH/Az0B/wG8AboBuQH/A1sB/wOdAf8CyAHHAf8BWgFbAVUB/wFaAVsBVQH/ArsBugH/A50B/wNb
+        Af8D5wH/A2wB/wMYASHAAAGTApEB/wO7Af8DmAH/Az0B/wG9AbsBugH/A3cB/wNJAf8D2wH/A9YB/wPW
+        Af8DngH/A04B/wOCAf8D5wH/A2wB/wMYASHAAAGTApEB/wO7Af8DmAH/Az0B/wG/Ab0BvAH/A5QB/wNc
+        Af8DpAH/A0QB/wNEAf8DZQH/A7IB/wODAf8D5wH/A2wB/wMYASHAAAGTApEB/wO7Af8DmAH/Az0B/wHC
+        AcEBwAH/A8YB/wN6Af8DgwH/A5UB/wOpAf8DtwH/AV0B3wH5Af8BDQGUAc8B/wPnAf8DbAH/AxgBIsAA
+        Ab0CvAH/A+gB/wPaAf8DmAH/AccBxgHFAf8D2gH/A88B/wOkAf8DjwH/AV4B4AH5Af8BDQGUAc8B/wFd
+        Ad8B+QH/AQ0BlAHPAf8BXQHfAfkB/wENAZQBzwH/AxkBI8AAA3oB/wNKAf8DSgH/A3MB/wHPAs0B/wPk
+        Af8D5AH/A+QB/wPkAf8D5AH/AWMB5QH6Af8BYgHkAfoB/wFhAeMB+gH/AQ0BlAHPAf8DbAH/AxkBI8AA
+        A2YB/wNJAf8DSQH/A3MR/wFrAe0B/AH/AWoB7AH8Af8BaQHrAfwB/wENAZQBzwH/AWYB6QH7Af8BZQHo
+        AfsB/wFkAecB+wH/AQ0BlAHPAf/AAANQAZ0DngH+A70B/wPyAf8DrgH/A64B/wOuAf8DrgH/A64B/wOu
+        Af8BbgHxAf0B/wFtAfAB/QH/AWwB7wH9Af8BDQGUAc8B/wNnAeoDDQER5AABdQH4Av8BDQGUAc8B/wFz
+        AfYB/gH/AQ0BlAHPAf8BcQH0Af4B/wENAZQBzwH/AwQBBuwAAXYB+QL/AQ0BlAHPAf8DBAEGAwEBAsQA
+        AUIBTQE+BwABPgMAASgDAAFAAwABEAMAAQEBAAEBBQABgBcAA/8BAAGAbwAB/wGABgAB/wHhBgAL
+</value>
   </data>
 </root>

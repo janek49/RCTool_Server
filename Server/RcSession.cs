@@ -6,7 +6,10 @@ namespace RCTool_Server.Server
 {
     public sealed class RcSession : TcpSession
     {
+        public long LastKeepAliveReceived;
+
         private readonly RcServer _RcServer;
+
         public RcSession(RcServer server) : base(server)
         {
             _RcServer = server;

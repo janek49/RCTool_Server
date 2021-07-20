@@ -27,21 +27,29 @@ namespace RCTool_Server.Client
         }
 
         public void RegisterClient(RcSession client, InboundPacket01Identify packet)
-        { 
+        {
             var conType = (RemoteClient.ClientConnectionType)packet.ConnectionType;
+            RemoteClient remoteClient;
 
             if (conType == RemoteClient.ClientConnectionType.USER)
             {
-                RemoteUserClient ruc = new RemoteUserClient(client);
-                ruc.ConnectionType = conType;
-                AuthenticatedClients.TryAdd(client, ruc);
-                ruc.OnClientRegistered();
-                ClientRegisteredEvent?.Invoke(ruc);
+                remoteClient = new RemoteUserClient(client);
+            }
+            else if (conType == RemoteClient.ClientConnectionType.AUX_WEBCAM)
+            {
+                remoteClient = new RemoteWebCamClient(client);
             }
             else
             {
                 client.Disconnect();
+                UnregisterClient(client);
+                return;
             }
+
+            remoteClient.ConnectionType = conType;
+            AuthenticatedClients.TryAdd(client, remoteClient);
+            remoteClient.OnClientRegistered();
+            ClientRegisteredEvent?.Invoke(remoteClient);
         }
 
         public void ReceivePacket(RcSession client, InboundPacket packet)
@@ -56,6 +64,7 @@ namespace RCTool_Server.Client
             {
                 Logger.Error($"Received packet {packet.PacketId} ({packet.GetType().Name}) from unauthenticated client {NetUtil.GetIPAddressFromSocket(client.Socket)} Disconnecting.");
                 client.Disconnect();
+                UnregisterClient(client);
             }
         }
 

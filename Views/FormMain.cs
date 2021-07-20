@@ -70,36 +70,36 @@ namespace RCTool_Server.Views
             lvcLocale.AspectGetter = row => (row as RemoteUserClient)?.LatestClientFacts?.Language;
             lvcPing.AspectGetter = row => (row as RemoteUserClient)?.LatestClientFacts?.Ping + " ms";
 
-              
-             _ServerObj.InboundPacketHandler.ClientHandler.ClientRegisteredEvent += remoteClient =>
-             {
-                 SetListViewObjects();
-             };
 
-             _ServerObj.InboundPacketHandler.ClientHandler.ClientDisconnectedEvent += remoteClient =>
-             {
-                 SetListViewObjects();
-             };
+            _ServerObj.InboundPacketHandler.ClientHandler.ClientRegisteredEvent += remoteClient =>
+            {
+                SetListViewObjects();
+            };
 
-             _ServerObj.InboundPacketHandler.ClientHandler.ClientPacketReceivedEvent += (remoteClient, packet) =>
-             {
-                 if (packet is InboundPacket02DataResponse dr && dr.ReceivedClientFacts != null)
-                 {
-                     SetListViewObjects();
-                 }
-             };
-             
+            _ServerObj.InboundPacketHandler.ClientHandler.ClientDisconnectedEvent += remoteClient =>
+            {
+                SetListViewObjects();
+            };
+
+            _ServerObj.InboundPacketHandler.ClientHandler.ClientPacketReceivedEvent += (remoteClient, packet) =>
+            {
+                if (packet is InboundPacket02DataResponse dr && dr.ReceivedClientFacts != null)
+                {
+                    SetListViewObjects();
+                }
+            };
+
         }
 
         private void SetListViewObjects()
         {
-              objectListView1.SetObjects(_ServerObj.InboundPacketHandler.ClientHandler.AuthenticatedClients.Values);
+            objectListView1.SetObjects(_ServerObj.InboundPacketHandler.ClientHandler.AuthenticatedClients.Values);
         }
 
         private void timerUI_Tick(object sender, EventArgs e)
         {
             tsLblThreads.Text = "Wątki: " + System.Diagnostics.Process.GetCurrentProcess().Threads.Count;
-               tsLblConClients.Text = "Podłączone klienty: " + (_ServerObj?.InboundPacketHandler?.ClientHandler?.AuthenticatedClients?.Values.Count ?? 0);
+            tsLblConClients.Text = "Podłączone klienty: " + (_ServerObj?.InboundPacketHandler?.ClientHandler?.AuthenticatedClients?.Values.Count ?? 0);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -111,6 +111,30 @@ namespace RCTool_Server.Views
         {
             (objectListView1.SelectedObject as RemoteClient)?.SendPacket(
                 new OutboundPacket00RequestData(OutboundPacket00RequestData.EnumDataType.CLIENT_LIST));
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            (objectListView1.SelectedObject as RemoteClient)?.SendPacket(new OutboundPacket01OpenSocket()
+            {
+                ConnectionType = 3,
+                Uuid = Guid.NewGuid().ToString()
+            });
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            (objectListView1.SelectedObject as RemoteClient)?.SendPacket(
+                new OutboundPacket00RequestData(OutboundPacket00RequestData.EnumDataType.WEBCAM_LIST)).ListenForAnswer(
+                (packet) =>
+                {
+                    if (packet is InboundPacket03WebCam p03cam && p03cam.CommandMode == 0)
+                    {
+                        new FormWebCamList(p03cam.WebCamDictionary).ShowDialog();
+                        return true;
+                    }
+                    return false;
+                });
         }
     }
 }
