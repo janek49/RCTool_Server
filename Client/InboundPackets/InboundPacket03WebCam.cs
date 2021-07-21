@@ -10,6 +10,7 @@ namespace RCTool_Server.Client.InboundPackets
 {
     public class InboundPacket03WebCam : InboundPacket
     {
+       
         public short CommandMode;
         public Dictionary<string, string> WebCamDictionary;
         public byte[] ImageBytes;
@@ -23,7 +24,7 @@ namespace RCTool_Server.Client.InboundPackets
             CommandMode = reader.ReadInt16();
             switch (CommandMode)
             {
-                case 0:
+                case 0: //cam list
                     {
                         WebCamDictionary = new Dictionary<string, string>();
                         int cams = reader.ReadInt32();
@@ -31,7 +32,7 @@ namespace RCTool_Server.Client.InboundPackets
                             WebCamDictionary.Add(reader.ReadString(), reader.ReadString());
                         break;
                     }
-                case 1:
+                case 1: //image data
                 {
                     int length = reader.ReadInt32();
                     ImageBytes = reader.ReadBytes(length);

@@ -38,6 +38,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -48,6 +49,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject />
@@ -64,6 +66,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -78,16 +81,24 @@
     <Compile Include="Client\InboundPackets\InboundPacket01Identify.cs" />
     <Compile Include="Client\InboundPackets\InboundPacket02DataResponse.cs" />
     <Compile Include="Client\InboundPackets\InboundPacket03WebCam.cs" />
-    <Compile Include="Client\IncomingPacketCallback.cs" />
+    <Compile Include="Client\InboundPackets\InboundPacket04ChunkTransfer.cs" />
+    <Compile Include="Client\InboundPackets\InboundPacket999MultiPacket.cs" />
+    <Compile Include="Client\SentPacketCallback.cs" />
+    <Compile Include="Client\MultiPartPacketHandler.cs" />
     <Compile Include="Client\OutboundPackets\OutboundPacket.cs" />
     <Compile Include="Client\OutboundPackets\OutboundPacket00RequestData.cs" />
     <Compile Include="Client\OutboundPackets\OutboundPacket01OpenSocket.cs" />
+    <Compile Include="Client\OutboundPackets\OutboundPacket02WebCam.cs" />
     <Compile Include="Client\RemoteClient.cs" />
     <Compile Include="Client\ClientHandler.cs" />
     <Compile Include="Client\RemoteUserClient.cs" />
     <Compile Include="Client\RemoteWebCamClient.cs" />
+    <Compile Include="Client\WebCam\WebCamAction.cs" />
     <Compile Include="Server\RcServer.cs" />
     <Compile Include="Server\RcSession.cs" />
+    <Compile Include="Util\CallbackForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Util\Extensions.cs" />
     <Compile Include="Util\Logger.cs" />
     <Compile Include="Util\NetUtil.cs" />
@@ -105,6 +116,12 @@
     <Compile Include="Views\FormWebCamList.Designer.cs">
       <DependentUpon>FormWebCamList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\FormWebCamPreview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FormWebCamPreview.Designer.cs">
+      <DependentUpon>FormWebCamPreview.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -121,11 +138,18 @@
     <EmbeddedResource Include="Views\FormWebCamList.resx">
       <DependentUpon>FormWebCamList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\FormWebCamPreview.resx">
+      <DependentUpon>FormWebCamPreview.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Monitors.ico" />
+    <None Include="Resources\control.PNG" />
+    <None Include="Resources\deny-icon.png" />
+    <None Include="Resources\camera.png" />
+    <None Include="Resources\camera-black.png" />
     <None Include="Resources\Delete.png" />
     <None Include="Resources\Stop.png" />
     <None Include="Resources\Ok.png" />

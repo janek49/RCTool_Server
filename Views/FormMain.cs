@@ -1,10 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Net;
+using System.Threading;
 using System.Windows.Forms;
 using RCTool_Server.Client;
 using RCTool_Server.Client.InboundPackets;
 using RCTool_Server.Client.OutboundPackets;
+using RCTool_Server.Client.WebCam;
 using RCTool_Server.Server;
 using RCTool_Server.Util;
 
@@ -115,22 +119,71 @@ namespace RCTool_Server.Views
 
         private void button1_Click_1(object sender, EventArgs e)
         {
+            var uuid = Guid.NewGuid().ToString();
             (objectListView1.SelectedObject as RemoteClient)?.SendPacket(new OutboundPacket01OpenSocket()
             {
                 ConnectionType = 3,
-                Uuid = Guid.NewGuid().ToString()
+                Uuid = uuid
             });
+            ClientHandler.OnClientRegistered eh = null;
+            eh = (rc) =>
+            {
+                if (rc.ClientId == uuid)
+                {
+                    _ServerObj.InboundPacketHandler.ClientHandler.ClientRegisteredEvent -= eh;
+
+                    rc.SendPacket(new OutboundPacket00RequestData(OutboundPacket00RequestData.EnumDataType.WEBCAM_LIST)).ListenForAnswer(
+                        (packet) =>
+                        {
+                            if (packet is InboundPacket03WebCam ip && ip.CommandMode == (int)WebCamAction.REQUEST_LIST)
+                            {
+                                this.InvokeAsync(() => new FormWebCamList(ip.WebCamDictionary).WhenClosed<FormWebCamList>(
+                                    (frm) =>
+                                    {
+                                        if (frm.DialogResult == DialogResult.OK)
+                                        {
+                                            this.InvokeAsync(() =>
+                                                new FormWebCamPreview()
+                                                {
+                                                    WebCamId = frm.lvWebCams.SelectedItems[0].SubItems[2].Text,
+                                                    RemoteWebCamClient = (RemoteWebCamClient)rc
+                                                }.ShowDialog(this));
+                                        }
+                                    }).ShowDialog(this));
+                                return true;
+                            }
+                            return false;
+                        });
+                }
+            };
+            _ServerObj.InboundPacketHandler.ClientHandler.ClientRegisteredEvent += eh;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            (objectListView1.SelectedObject as RemoteClient)?.SendPacket(
+            var rc = objectListView1.SelectedObject as RemoteWebCamClient;
+            rc?.SendPacket(
                 new OutboundPacket00RequestData(OutboundPacket00RequestData.EnumDataType.WEBCAM_LIST)).ListenForAnswer(
                 (packet) =>
                 {
                     if (packet is InboundPacket03WebCam p03cam && p03cam.CommandMode == 0)
                     {
-                        new FormWebCamList(p03cam.WebCamDictionary).ShowDialog();
+
+                        this.Invoke((MethodInvoker)(() => new FormWebCamList(p03cam.WebCamDictionary).WhenClosed<FormWebCamList>(
+                            (frm) =>
+                            {
+                                if (frm.DialogResult != DialogResult.OK || frm.lvWebCams.SelectedItems.Count != 1)
+                                    return;
+                                var selected = frm.lvWebCams.SelectedItems[0].SubItems[2].Text;
+
+                                Invoke((MethodInvoker)(() => new FormWebCamPreview
+                                {
+                                    WebCamId = selected,
+                                    RemoteWebCamClient = rc
+                                }.ShowDialog()));
+
+                            }).ShowDialog()));
+
                         return true;
                     }
                     return false;

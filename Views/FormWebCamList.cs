@@ -7,10 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using RCTool_Server.Util;
 
 namespace RCTool_Server.Views
 {
-    public partial class FormWebCamList : Form
+    public partial class FormWebCamList : CallbackForm
     {
         public Dictionary<string, string> WebCamDictionary;
 
@@ -19,7 +20,7 @@ namespace RCTool_Server.Views
             InitializeComponent();
         }
 
-        public FormWebCamList(Dictionary<string, string> webCamDictionary)
+        public FormWebCamList(Dictionary<string, string> webCamDictionary) : this()
         {
             WebCamDictionary = webCamDictionary;
         }
@@ -28,10 +29,20 @@ namespace RCTool_Server.Views
         {
             foreach (var keyPair in WebCamDictionary)
             {
-                var lvi = new ListViewItem(new string[]{"", keyPair.Key, keyPair.Value});
+                var lvi = new ListViewItem(new string[] { "", keyPair.Value, keyPair.Key });
                 lvi.ImageIndex = 0;
                 lvWebCams.Items.Add(lvi);
             }
+        }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.OK;
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
         }
     }
 }

@@ -46,6 +46,7 @@ namespace RCTool_Server.Client
                 return;
             }
 
+            remoteClient.ClientId = packet.ClientId;
             remoteClient.ConnectionType = conType;
             AuthenticatedClients.TryAdd(client, remoteClient);
             remoteClient.OnClientRegistered();

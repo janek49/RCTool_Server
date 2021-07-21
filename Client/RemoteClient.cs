@@ -13,6 +13,7 @@ namespace RCTool_Server.Client
             USER, AUX_FILE, AUX_RDP, AUX_WEBCAM
         }
 
+        public string ClientId;
         public ClientConnectionType ConnectionType;
         public RcSession Connection { get; }
         public string IpAddress;
@@ -26,7 +27,7 @@ namespace RCTool_Server.Client
             IpAddress = NetUtil.GetIPAddressFromSocket(connection.Socket);
         }
 
-        public IncomingPacketCallback SendPacket(OutboundPacket packet)
+        public SentPacketCallback SendPacket(OutboundPacket packet)
         {
             using (MemoryStream ms = new MemoryStream())
             {
@@ -40,7 +41,7 @@ namespace RCTool_Server.Client
                 Logger.Log(IpAddress, "Sent packet id: " + packet.PacketId + $" ({packet.GetType().Name})");
             }
 
-            return new IncomingPacketCallback(this);
+            return new SentPacketCallback(this);
         }
 
         public virtual void ReceivePacket(InboundPacket packet)

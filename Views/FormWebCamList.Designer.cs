@@ -34,8 +34,8 @@ namespace RCTool_Server.Views
             this.label1 = new System.Windows.Forms.Label();
             this.lvWebCams = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.imgListWebCam = new System.Windows.Forms.ImageList(this.components);
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
@@ -54,10 +54,12 @@ namespace RCTool_Server.Views
             // 
             this.lvWebCams.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3});
+            this.columnHeader3,
+            this.columnHeader2});
+            this.lvWebCams.FullRowSelect = true;
             this.lvWebCams.HideSelection = false;
             this.lvWebCams.Location = new System.Drawing.Point(15, 42);
+            this.lvWebCams.MultiSelect = false;
             this.lvWebCams.Name = "lvWebCams";
             this.lvWebCams.Size = new System.Drawing.Size(442, 156);
             this.lvWebCams.SmallImageList = this.imgListWebCam;
@@ -70,21 +72,22 @@ namespace RCTool_Server.Views
             this.columnHeader1.Text = "";
             this.columnHeader1.Width = 20;
             // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "Identyfikator";
-            this.columnHeader2.Width = 200;
-            // 
             // columnHeader3
             // 
             this.columnHeader3.Text = "Nazwa";
             this.columnHeader3.Width = 180;
             // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Identyfikator";
+            this.columnHeader2.Width = 200;
+            // 
             // imgListWebCam
             // 
             this.imgListWebCam.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgListWebCam.ImageStream")));
             this.imgListWebCam.TransparentColor = System.Drawing.Color.Transparent;
-            this.imgListWebCam.Images.SetKeyName(0, "import camera.png");
+            this.imgListWebCam.Images.SetKeyName(0, "camera.png");
+            this.imgListWebCam.Images.SetKeyName(1, "import camera.png");
             // 
             // btnCancel
             // 
@@ -98,6 +101,7 @@ namespace RCTool_Server.Views
             this.btnCancel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnOK
             // 
@@ -111,11 +115,13 @@ namespace RCTool_Server.Views
             this.btnOK.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnOK.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // FormWebCamList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(470, 243);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
@@ -134,12 +140,12 @@ namespace RCTool_Server.Views
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListView lvWebCams;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ImageList imgListWebCam;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Button btnCancel;
+        public System.Windows.Forms.ListView lvWebCams;
     }
 }
