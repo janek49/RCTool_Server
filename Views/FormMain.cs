@@ -106,88 +106,11 @@ namespace RCTool_Server.Views
             tsLblConClients.Text = "Podłączone klienty: " + (_ServerObj?.InboundPacketHandler?.ClientHandler?.AuthenticatedClients?.Values.Count ?? 0);
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            //     _ServerObj.SendToAll(Encoding.UTF8.GetBytes(textBox1.Text));
-        }
-
         private void objectListView1_DoubleClick(object sender, EventArgs e)
         {
-            (objectListView1.SelectedObject as RemoteClient)?.SendPacket(
-                new OutboundPacket00RequestData(OutboundPacket00RequestData.EnumDataType.CLIENT_LIST));
+            if (objectListView1.SelectedObject is RemoteUserClient ruc)
+                new FormClientController(ruc, _ServerObj).ShowDialog();
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            var uuid = Guid.NewGuid().ToString();
-            (objectListView1.SelectedObject as RemoteClient)?.SendPacket(new OutboundPacket01OpenSocket()
-            {
-                ConnectionType = 3,
-                Uuid = uuid
-            });
-            ClientHandler.OnClientRegistered eh = null;
-            eh = (rc) =>
-            {
-                if (rc.ClientId == uuid)
-                {
-                    _ServerObj.InboundPacketHandler.ClientHandler.ClientRegisteredEvent -= eh;
-
-                    rc.SendPacket(new OutboundPacket00RequestData(OutboundPacket00RequestData.EnumDataType.WEBCAM_LIST)).ListenForAnswer(
-                        (packet) =>
-                        {
-                            if (packet is InboundPacket03WebCam ip && ip.CommandMode == (int)WebCamAction.REQUEST_LIST)
-                            {
-                                this.InvokeAsync(() => new FormWebCamList(ip.WebCamDictionary).WhenClosed<FormWebCamList>(
-                                    (frm) =>
-                                    {
-                                        if (frm.DialogResult == DialogResult.OK)
-                                        {
-                                            this.InvokeAsync(() =>
-                                                new FormWebCamPreview()
-                                                {
-                                                    WebCamId = frm.lvWebCams.SelectedItems[0].SubItems[2].Text,
-                                                    RemoteWebCamClient = (RemoteWebCamClient)rc
-                                                }.ShowDialog(this));
-                                        }
-                                    }).ShowDialog(this));
-                                return true;
-                            }
-                            return false;
-                        });
-                }
-            };
-            _ServerObj.InboundPacketHandler.ClientHandler.ClientRegisteredEvent += eh;
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            var rc = objectListView1.SelectedObject as RemoteWebCamClient;
-            rc?.SendPacket(
-                new OutboundPacket00RequestData(OutboundPacket00RequestData.EnumDataType.WEBCAM_LIST)).ListenForAnswer(
-                (packet) =>
-                {
-                    if (packet is InboundPacket03WebCam p03cam && p03cam.CommandMode == 0)
-                    {
-
-                        this.Invoke((MethodInvoker)(() => new FormWebCamList(p03cam.WebCamDictionary).WhenClosed<FormWebCamList>(
-                            (frm) =>
-                            {
-                                if (frm.DialogResult != DialogResult.OK || frm.lvWebCams.SelectedItems.Count != 1)
-                                    return;
-                                var selected = frm.lvWebCams.SelectedItems[0].SubItems[2].Text;
-
-                                Invoke((MethodInvoker)(() => new FormWebCamPreview
-                                {
-                                    WebCamId = selected,
-                                    RemoteWebCamClient = rc
-                                }.ShowDialog()));
-
-                            }).ShowDialog()));
-
-                        return true;
-                    }
-                    return false;
-                });
-        }
     }
 }

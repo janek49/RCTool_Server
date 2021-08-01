@@ -51,8 +51,6 @@
             this.timerUI = new System.Windows.Forms.Timer(this.components);
             this.btnStopServer = new System.Windows.Forms.Button();
             this.btnStartServer = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.objectListView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudServerPort)).BeginInit();
             this.statusStrip1.SuspendLayout();
@@ -230,33 +228,11 @@
             this.btnStartServer.UseVisualStyleBackColor = true;
             this.btnStartServer.Click += new System.EventHandler(this.btnStartServer_Click);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(611, 20);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(699, 22);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 434);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.btnStopServer);
             this.Controls.Add(this.btnStartServer);
@@ -299,7 +275,5 @@
         private System.Windows.Forms.ToolStripStatusLabel tsLblThreads;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.Timer timerUI;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
     }
 }

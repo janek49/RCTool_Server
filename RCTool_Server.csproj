@@ -104,23 +104,30 @@
     <Compile Include="Util\NetUtil.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\FormClientController.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FormClientController.Designer.cs">
+      <DependentUpon>FormClientController.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\FormWebCamList.cs">
-      <SubType>Form</SubType>
+    <Compile Include="Views\Tabs\clientController.cs" />
+    <Compile Include="Views\Tabs\UCTabPageContent.cs">
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\FormWebCamList.Designer.cs">
-      <DependentUpon>FormWebCamList.cs</DependentUpon>
+    <Compile Include="Views\Tabs\UC_WebCam.cs">
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\FormWebCamPreview.cs">
-      <SubType>Form</SubType>
+    <Compile Include="Views\Tabs\UC_WebCam.Designer.cs">
+      <DependentUpon>UC_WebCam.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\FormWebCamPreview.Designer.cs">
-      <DependentUpon>FormWebCamPreview.cs</DependentUpon>
+    <Compile Include="Views\Tabs\UserControlTabPage.cs">
+      <SubType>Component</SubType>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -132,20 +139,22 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Views\FormClientController.resx">
+      <DependentUpon>FormClientController.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\FormWebCamList.resx">
-      <DependentUpon>FormWebCamList.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\FormWebCamPreview.resx">
-      <DependentUpon>FormWebCamPreview.cs</DependentUpon>
+    <EmbeddedResource Include="Views\Tabs\UC_WebCam.resx">
+      <DependentUpon>UC_WebCam.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Monitors.ico" />
+    <None Include="Resources\connect.png" />
+    <None Include="Resources\refresh.png" />
     <None Include="Resources\control.PNG" />
     <None Include="Resources\deny-icon.png" />
     <None Include="Resources\camera.png" />
