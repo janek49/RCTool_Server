@@ -13,12 +13,12 @@ namespace RCTool_Server
         [STAThread]
         static void Main()
         {
-             Application.EnableVisualStyles();
+            Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
             Logger.Log("Uruchomiono aplikację.");
 
-            Application.Run(new FormMain());
+            new System.Windows.Application().Run(new MainWindow());
         }
     }
 }

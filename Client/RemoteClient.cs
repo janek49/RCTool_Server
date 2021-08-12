@@ -16,7 +16,8 @@ namespace RCTool_Server.Client
         public string ClientId;
         public ClientConnectionType ConnectionType;
         public RcSession Connection { get; }
-        public string IpAddress;
+
+        public string IpAddress { get; set; }
 
         public delegate void OnPacketReceived(InboundPacket packet);
         public event OnPacketReceived OnPacketReceivedEvent;

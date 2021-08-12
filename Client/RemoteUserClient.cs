@@ -8,14 +8,14 @@ namespace RCTool_Server.Client
     {
         public class ClientFacts
         {
-            public string Username;
-            public string OperatingSystem;
-            public string RAM;
-            public string Language;
-            public long Ping;
+            public string Username { get; set; }
+            public string OperatingSystem { get; set; }
+            public string RAM { get; set; }
+            public string Language { get; set; }
+            public long Ping { get; set; }
         }
 
-        public ClientFacts LatestClientFacts;
+        public ClientFacts LatestClientFacts { get; set; }
 
         public RemoteUserClient(RcSession connection) : base(connection) { }
 

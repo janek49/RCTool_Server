@@ -1,0 +1,116 @@
+﻿<Window x:Class="RCTool_Server.Views.MainWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:RCTool_Server.Views"
+             mc:Ignorable="d" 
+             WindowStartupLocation="CenterScreen" MinWidth="5" Width="911" Height="421" Title="RCTool Server 1.0">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="34*"/>
+        </Grid.RowDefinitions>
+        <StatusBar Height="20" VerticalAlignment="Bottom" Background="#FF007ACC" Grid.Row="1">
+            <TextBlock Foreground="White">Status</TextBlock>
+        </StatusBar>
+        <ToolBar Height="26" VerticalAlignment="Top">
+            <Button x:Name="ToolBtnRunServer" Command="{Binding ICmdStartServer}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/Resources/apply.png" VerticalAlignment="Bottom" />
+                    <TextBlock Margin="4,0,0,0" VerticalAlignment="Bottom">Uruchom serwer</TextBlock>
+                </StackPanel>
+            </Button>
+            <Button x:Name="ToolBtnStopServer" Command="{Binding ICmdStopServer}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/Resources/exit.png" VerticalAlignment="Bottom" />
+                    <TextBlock Margin="4,0,0,0" VerticalAlignment="Bottom">Zatrzymaj serwer</TextBlock>
+                </StackPanel>
+            </Button>
+        </ToolBar>
+        <TabControl Margin="0,26,0,20" Grid.RowSpan="2">
+            <TabItem>
+                <TabItem.Header>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Column="0" Width="16" Source="/Resources/kdmconfig.png"/>
+                        <TextBlock Grid.Column="1" Margin="4,0,0,0"  Text="Klienty"></TextBlock>
+                    </Grid>
+                </TabItem.Header>
+                <ListView x:Name="ListViewRemoteClients" MouseDoubleClick="ListViewRemoteClients_MouseDoubleClick">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="" Width="20">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="X"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Adres IP" Width="140">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding IpAddress}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Użytkownik" Width="140">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding LatestClientFacts.Username}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="System operacyjny" Width="180">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding LatestClientFacts.OperatingSystem}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Pamięć RAM" Width="90">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding LatestClientFacts.RAM, StringFormat='\{0\} GB'}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Język" Width="120">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding LatestClientFacts.Language}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Ping" Width="60">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding LatestClientFacts.Ping, StringFormat='\{0\} ms'}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Column="0" Width="16" Source="/Resources/tab-settings.png"/>
+                        <TextBlock Grid.Column="1" Margin="4,0,0,0"  Text="Ustawienia"></TextBlock>
+                    </Grid>
+                </TabItem.Header>
+            </TabItem>
+           
+        </TabControl>
+
+    </Grid>
+</Window>
+ 
