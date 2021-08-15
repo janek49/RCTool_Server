@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.30611.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCTool_Server", "RCTool_Server.csproj", "{1E4F2438-F31E-4986-AD98-EB87D5E189AA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerUI", "..\TestApp\ServerUI.csproj", "{36758E84-B735-477B-B622-52AB9B7C94D0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{1E4F2438-F31E-4986-AD98-EB87D5E189AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E4F2438-F31E-4986-AD98-EB87D5E189AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E4F2438-F31E-4986-AD98-EB87D5E189AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36758E84-B735-477B-B622-52AB9B7C94D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36758E84-B735-477B-B622-52AB9B7C94D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36758E84-B735-477B-B622-52AB9B7C94D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36758E84-B735-477B-B622-52AB9B7C94D0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
