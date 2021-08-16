@@ -20,21 +20,25 @@ using System.IO;
 using AvalonDock.Layout.Serialization;
 using AvalonDock;
 using System.Diagnostics.CodeAnalysis;
+using System.Windows.Media.Imaging;
 
 namespace ServerUI
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class WindowClientManager : Window
+    public partial class WpfWindowClientManager : Window
     {
 
-        public WindowClientManager()
+        public delegate void OnTabPageInserted(LayoutDocument doc, Control tabCtr);
+        public event OnTabPageInserted OnTabPageInsertedEvent;
+
+        public WpfWindowClientManager()
         {
             InitializeComponent();
-            DataContext = this; 
+            DataContext = this;
         }
- 
+
 
         #region FocusedElement
 
@@ -42,7 +46,7 @@ namespace ServerUI
         /// FocusedElement Dependency Property
         /// </summary>
         public static readonly DependencyProperty FocusedElementProperty =
-            DependencyProperty.Register("FocusedElement", typeof(string), typeof(WindowClientManager),
+            DependencyProperty.Register("FocusedElement", typeof(string), typeof(WpfWindowClientManager),
                 new FrameworkPropertyMetadata((IInputElement)null));
 
         /// <summary>
@@ -65,50 +69,30 @@ namespace ServerUI
                 Debug.WriteLine(string.Format("ActiveContent-> {0}", activeContent));
             }
         }
- 
-
-        private void AddTwoDocuments_click(object sender, RoutedEventArgs e)
-        {
-            var firstDocumentPane = dockManager.Layout.Descendents().OfType<LayoutDocumentPane>().FirstOrDefault();
-
-            if (firstDocumentPane != null)
-            {
-                LayoutDocument doc = new LayoutDocument
-                {
-                    Title = "Test1"
-                };
-                firstDocumentPane.Children.Add(doc);
-
-                LayoutDocument doc2 = new LayoutDocument
-                {
-                    Title = "Test2"
-                };
-                firstDocumentPane.Children.Add(doc2);
-            }
-
-            var leftAnchorGroup = dockManager.Layout.LeftSide.Children.FirstOrDefault();
-            if (leftAnchorGroup == null)
-            {
-                leftAnchorGroup = new LayoutAnchorGroup();
-                dockManager.Layout.LeftSide.Children.Add(leftAnchorGroup);
-            }
-
-            leftAnchorGroup.Children.Add(new LayoutAnchorable() { Title = "New Anchorable" });
-
-        }
 
         private void DockManager_DocumentClosing(object sender, DocumentClosingEventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to close the document?", "AvalonDock Sample", MessageBoxButton.YesNo) == MessageBoxResult.No)
-                e.Cancel = true;
         }
 
         private void EventHandler_TreeView(object sender, MouseButtonEventArgs e)
         {
-           if(sender == tviWebcam)
+            if (sender == tviWebcam)
             {
-                MessageBox.Show("Webcam");
+                InsertTab("Kamera", @"Images/camera.png", new CT_WebCam());
             }
+        }
+
+        private void InsertTab(string title, string imgPath, Control contents)
+        {
+            LayoutDocument doc = new LayoutDocument()
+            {
+                Title = title,
+                IconSource = new BitmapImage(new Uri(imgPath, UriKind.Relative))
+            };
+            var tabs = dockManager.Layout.Descendents().OfType<LayoutDocumentPane>().FirstOrDefault();
+            doc.Content = contents;
+            tabs.Children.Add(doc);
+            OnTabPageInsertedEvent?.Invoke(doc, contents);
         }
     }
 }

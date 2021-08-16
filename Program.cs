@@ -18,7 +18,7 @@ namespace RCTool_Server
 
             Logger.Log("Uruchomiono aplikację.");
 
-            new System.Windows.Application().Run(new MainWindow());
+             
         }
     }
 }

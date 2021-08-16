@@ -1,19 +1,16 @@
 ﻿using RCTool_Server.Client;
 using RCTool_Server.Client.InboundPackets;
 using RCTool_Server.Server;
-using RCTool_Server.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Input;
 
-namespace RCTool_Server.ViewController
+namespace UIController.MainUI
 {
-    public class RcViewController
+    public class MainWindowLogic
     {
         public RcServer _ServerObj;
 
@@ -21,10 +18,6 @@ namespace RCTool_Server.ViewController
 
         public delegate void OnRemoteClientsUpdated(ICollection<RemoteClient> RemoteClients);
         public event OnRemoteClientsUpdated OnRemoteClientsUpdatedEvent;
-
-        public RcViewController()
-        {
-        }
 
         public ICommandExt ICmdStartServer
         {
@@ -80,6 +73,5 @@ namespace RCTool_Server.ViewController
             RemoteUserClients = _ServerObj.InboundPacketHandler.ClientHandler.AuthenticatedClients.Values;
             OnRemoteClientsUpdatedEvent?.Invoke(RemoteUserClients);
         }
-
     }
 }

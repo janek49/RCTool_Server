@@ -1,5 +1,6 @@
 ﻿using RCTool_Server.Client;
 using RCTool_Server.Views;
+using ServerUI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,24 +9,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace RCTool_Server.ViewController
+namespace UIController.ClientUI
 {
-    public class RcClientWindowManager
+    public class ClientWindowManager
     {
-        private RcViewController rcViewController;
+        public Dictionary<RemoteUserClient, ClientWindowLogic> MapClientToWindowCtx = new Dictionary<RemoteUserClient, ClientWindowLogic>();
 
-        public Dictionary<RemoteClient, Window> ClientToWindowDict = new Dictionary<RemoteClient, Window>();
-
-        public RcClientWindowManager(RcViewController rcv)
+        public ClientWindowManager()
         {
-            rcViewController = rcv;
         }
 
-        public void OpenWindowForClient(RemoteClient rc)
+        public void OpenWindowForClient(RemoteUserClient rc)
         {
-            if (ClientToWindowDict.ContainsKey(rc))
+            if (MapClientToWindowCtx.ContainsKey(rc))
             {
-                Window window = ClientToWindowDict[rc];
+                Window window = MapClientToWindowCtx[rc].wpfWindow;
 
                 if (window == null)
                     goto lbl_create;
@@ -50,14 +48,14 @@ namespace RCTool_Server.ViewController
 
         public RemoteClient FindClientForWindow(Window window)
         {
-            return ClientToWindowDict.FirstOrDefault(x => x.Value == window).Key;
+            return MapClientToWindowCtx.FirstOrDefault(x => x.Value.wpfWindow == window).Key;
         }
 
-        private void CreateAndShowNewWindow(RemoteClient rc)
+        private void CreateAndShowNewWindow(RemoteUserClient rc)
         {
-            ClientToWindowDict.Remove(rc);
-            WindowClientController wcc = new WindowClientController(this);
-            ClientToWindowDict.Add(rc, wcc);
+            MapClientToWindowCtx.Remove(rc);
+            WpfWindowClientManager wcc = new WpfWindowClientManager();
+            MapClientToWindowCtx.Add(rc, new ClientWindowLogic(rc, wcc));
             wcc.Show();
             wcc.Focus();
         }
