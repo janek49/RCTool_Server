@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30611.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCTool_Server", "RCTool_Server.csproj", "{1E4F2438-F31E-4986-AD98-EB87D5E189AA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCTool_ServerCore", "RCTool_ServerCore.csproj", "{1E4F2438-F31E-4986-AD98-EB87D5E189AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerUI", "ServerUI\ServerUI.csproj", "{36758E84-B735-477B-B622-52AB9B7C94D0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCTool_ServerWpfUI", "ServerUI\RCTool_ServerWpfUI.csproj", "{36758E84-B735-477B-B622-52AB9B7C94D0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UIController", "UIController\UIController.csproj", "{6523D4C8-D349-4FCE-BFB1-4ACE8781C586}"
 EndProject

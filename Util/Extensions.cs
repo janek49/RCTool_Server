@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows.Forms;
 
 namespace RCTool_Server.Util
 {
@@ -12,9 +11,6 @@ namespace RCTool_Server.Util
             return tmp;
         }
 
-        public static void InvokeAsync(this Control ctx, Action ac)
-        {
-            ctx.BeginInvoke(ac);
-        }
+       
     }
 }

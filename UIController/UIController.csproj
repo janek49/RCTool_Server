@@ -75,13 +75,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RCTool_Server.csproj">
+    <ProjectReference Include="..\RCTool_ServerCore.csproj">
       <Project>{1e4f2438-f31e-4986-ad98-eb87d5e189aa}</Project>
-      <Name>RCTool_Server</Name>
+      <Name>RCTool_ServerCore</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ServerUI\ServerUI.csproj">
+    <ProjectReference Include="..\ServerUI\RCTool_ServerWpfUI.csproj">
       <Project>{36758e84-b735-477b-b622-52ab9b7c94d0}</Project>
-      <Name>ServerUI</Name>
+      <Name>RCTool_ServerWpfUI</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
