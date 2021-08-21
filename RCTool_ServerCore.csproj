@@ -91,7 +91,9 @@
     <Compile Include="Client\ClientHandler.cs" />
     <Compile Include="Client\RemoteUserClient.cs" />
     <Compile Include="Client\RemoteWebCamClient.cs" />
+    <Compile Include="Client\WebCam\RemoteWebCamException.cs" />
     <Compile Include="Client\WebCam\WebCamAction.cs" />
+    <Compile Include="Client\WebCam\WebCamHelper.cs" />
     <Compile Include="Server\RcServer.cs" />
     <Compile Include="Server\RcSession.cs" />
     <Compile Include="Util\Extensions.cs" />

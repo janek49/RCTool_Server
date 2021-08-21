@@ -1,4 +1,5 @@
 ﻿using RCTool_Server.Client;
+using RCTool_Server.Server;
 using ServerUI;
 using System;
 using System.Collections.Generic;
@@ -14,11 +15,13 @@ namespace UIController.ClientUI
     {
         public WpfWindowClientManager wpfWindow;
         public Dictionary<Control, TabPageLogic> TabPageLogicDict = new Dictionary<Control, TabPageLogic>();
-        public RemoteUserClient RcClient;
+        public RemoteUserClient RcUClient;
+        public RcServer RcServer;
 
         public ClientWindowLogic(RemoteUserClient client, WpfWindowClientManager wpfWindow)
         {
-            this.RcClient = client;
+            this.RcUClient = client;
+            RcServer = client.Connection.RcServer;
             this.wpfWindow = wpfWindow;
             wpfWindow.OnTabPageInsertedEvent += WpfWindow_OnTabPageInsertedEvent;
         }

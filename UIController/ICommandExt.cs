@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace UIController
@@ -30,9 +31,16 @@ namespace UIController
             _exec.Invoke();
         }
 
-        public void NotifyStateChange()
+        public void NotifyStateChange(Window parent = null)
         {
-            CanExecuteChanged?.Invoke(this, new EventArgs());
+            if (parent == null)
+            {
+                CanExecuteChanged?.Invoke(this, new EventArgs());
+            }
+            else
+            {
+                parent.Dispatcher.Invoke(() => CanExecuteChanged?.Invoke(this, new EventArgs()));
+            }
         }
     }
 }

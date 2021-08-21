@@ -31,6 +31,12 @@ namespace UIController.MainUI
 
         private ICommandExt _iCmdStartServer;
         private ICommandExt _iCmdStopServer;
+        private MainWindowManager mainWindowMgr;
+
+        public MainWindowLogic(MainWindowManager mainWindowManager)
+        {
+            this.mainWindowMgr = mainWindowManager;
+        }
 
         public void StartServer()
         {
@@ -66,6 +72,8 @@ namespace UIController.MainUI
             _ServerObj.Stop();
             ICmdStartServer.NotifyStateChange();
             ICmdStopServer.NotifyStateChange();
+            mainWindowMgr.ClientWindowMgr.CloseAllWindows();
+
         }
 
         public void UpdateServerListCol()

@@ -10,7 +10,13 @@
             <Button x:Name="ToolBtnConnect" Command="{Binding ICmdOpenSocket}">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="Images/connect.png" VerticalAlignment="Bottom" />
-                    <TextBlock Margin="4,0,0,0" VerticalAlignment="Bottom">Otwórz łącze</TextBlock>
+                    <TextBlock Margin="4,0,0,0" VerticalAlignment="Bottom">Połącz</TextBlock>
+                </StackPanel>
+            </Button>
+            <Button x:Name="ToolBtnDisConnect" Command="{Binding ICmdCloseSocket}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="Images/forbidden.png" VerticalAlignment="Bottom" />
+                    <TextBlock Margin="4,0,0,0" VerticalAlignment="Bottom">Rozłącz</TextBlock>
                 </StackPanel>
             </Button>
         </ToolBar>

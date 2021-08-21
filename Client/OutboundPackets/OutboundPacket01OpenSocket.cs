@@ -16,6 +16,12 @@ namespace RCTool_Server.Client.OutboundPackets
         {
         }
 
+        public OutboundPacket01OpenSocket(short Connectiontype, string uuid) : this()
+        {
+            this.ConnectionType = Connectiontype;
+            this.Uuid = uuid;
+        }
+
         public override void WritePacket(BinaryWriter writer)
         {
             writer.Write(ConnectionType);

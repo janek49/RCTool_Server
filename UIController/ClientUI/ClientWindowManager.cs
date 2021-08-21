@@ -1,4 +1,5 @@
 ﻿using RCTool_Server.Client;
+using RCTool_Server.Server;
 using ServerUI;
 using System;
 using System.Collections.Generic;
@@ -57,6 +58,14 @@ namespace UIController.ClientUI
             MapClientToWindowCtx.Add(rc, new ClientWindowLogic(rc, wcc));
             wcc.Show();
             wcc.Focus();
+        }
+
+        public void CloseAllWindows()
+        {
+            foreach(ClientWindowLogic lgx in MapClientToWindowCtx.Values)
+            {
+                lgx.wpfWindow.Close();
+            }
         }
 
     }

@@ -10,7 +10,7 @@ using UIController.MainUI;
 
 namespace UIController.MainUI
 {
-    class MainWindowManager
+    public class MainWindowManager
     {
         [STAThread]
         static void Main(string[] args)
@@ -20,31 +20,31 @@ namespace UIController.MainUI
             new MainWindowManager().RunApp(args);
         }
 
-        private MainWindowLogic mwc;
-        private WpfWindowMainForm window;
-        private ClientWindowManager clientWdx;
+        public MainWindowLogic MainWindowLogic;
+        public WpfWindowMainForm WpfWindow;
+        public ClientWindowManager ClientWindowMgr;
 
         public void RunApp(string[] args)
         {
-            window = new WpfWindowMainForm();
-            mwc = new MainWindowLogic();
-            clientWdx = new ClientWindowManager();
-            window.DataContext = mwc;
-            mwc.OnRemoteClientsUpdatedEvent += Mwc_OnRemoteClientsUpdatedEvent;
-            window.OnListViewItemDoubleClickedEvent += Window_OnListViewItemDoubleClickedEvent;
-            new System.Windows.Application().Run(window);
+            WpfWindow = new WpfWindowMainForm();
+            MainWindowLogic = new MainWindowLogic(this);
+            ClientWindowMgr = new ClientWindowManager();
+            WpfWindow.DataContext = MainWindowLogic;
+            MainWindowLogic.OnRemoteClientsUpdatedEvent += Mwc_OnRemoteClientsUpdatedEvent;
+            WpfWindow.OnListViewItemDoubleClickedEvent += Window_OnListViewItemDoubleClickedEvent;
+            new System.Windows.Application().Run(WpfWindow);
 
         }
 
         private void Window_OnListViewItemDoubleClickedEvent(object value)
         {
             if (value is RemoteUserClient ruc)
-                clientWdx.OpenWindowForClient(ruc);
+                ClientWindowMgr.OpenWindowForClient(ruc);
         }
 
         private void Mwc_OnRemoteClientsUpdatedEvent(ICollection<RCTool_Server.Client.RemoteClient> RemoteClients)
         {
-            window.SetListViewContent(RemoteClients);
+            WpfWindow.SetListViewContent(RemoteClients);
         }
 
 
