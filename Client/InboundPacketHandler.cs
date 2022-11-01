@@ -26,6 +26,7 @@ namespace RCTool_Server.Client
             {0x2, typeof(InboundPacket02DataResponse)},
             {0x3, typeof(InboundPacket03WebCam)},
             {0x4, typeof(InboundPacket04ChunkTransfer)},
+            {0x5, typeof(InboundPacket05DirectoryList)},
             {999, typeof(InboundPacket999MultiPacket)}
         };
 

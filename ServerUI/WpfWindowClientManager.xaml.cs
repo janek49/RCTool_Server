@@ -80,6 +80,10 @@ namespace ServerUI
             {
                 InsertTab("Kamera", @"Images/camera.png", new CT_WebCam());
             }
+            else if (sender == tviFileSystem)
+            {
+                InsertTab("Pliki", @"Images/folder.png", new CT_FileSystem());
+            }
         }
 
         private void InsertTab(string title, string imgPath, Control contents)

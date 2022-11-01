@@ -16,9 +16,9 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:ServerUI" xmlns:uic="clr-namespace:ServerUI.UIComponent" xmlns:pt="http://propertytools.org/wpf" xmlns:c="clr-namespace:System.Windows.Controls;assembly=MultiSelectTreeView"
         Title="Menadżer klienta"
-    Width="800"
-    Height="450"
-    UseLayoutRounding="True">
+    Width="1000"
+    Height="700"
+    UseLayoutRounding="True" WindowStartupLocation="CenterScreen">
     <Grid x:Name="layoutRoot">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="139*"/>
@@ -66,7 +66,10 @@
                                 <uic:IconTreeViewItem HeaderText="Sprzęt" Icon="Images/computer.png" IsExpanded="True">
                                     <uic:IconTreeViewItem x:Name="tviWebcam" HeaderText="Kamera" Icon="Images/camera.png" MouseLeftButtonUp="EventHandler_TreeView"></uic:IconTreeViewItem>
                                 </uic:IconTreeViewItem>
-                                </TreeView>
+                                <uic:IconTreeViewItem HeaderText="Użytkownik" Icon="Images/username.png" IsExpanded="True">
+                                    <uic:IconTreeViewItem x:Name="tviFileSystem" HeaderText="Pliki" Icon="Images/folder.png" MouseLeftButtonUp="EventHandler_TreeView"></uic:IconTreeViewItem>
+                                </uic:IconTreeViewItem>
+                            </TreeView>
                         </LayoutAnchorable>
                     </LayoutAnchorablePane>
                     <LayoutDocumentPaneGroup>

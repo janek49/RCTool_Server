@@ -73,6 +73,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Client\File\FileSystemObject.cs" />
     <Compile Include="Client\InboundPacketHandler.cs" />
     <Compile Include="Client\InboundPackets\InboundPacket.cs" />
     <Compile Include="Client\InboundPackets\InboundPacket00KeepAlive.cs" />
@@ -80,7 +81,9 @@
     <Compile Include="Client\InboundPackets\InboundPacket02DataResponse.cs" />
     <Compile Include="Client\InboundPackets\InboundPacket03WebCam.cs" />
     <Compile Include="Client\InboundPackets\InboundPacket04ChunkTransfer.cs" />
+    <Compile Include="Client\InboundPackets\InboundPacket05DirectoryList.cs" />
     <Compile Include="Client\InboundPackets\InboundPacket999MultiPacket.cs" />
+    <Compile Include="Client\OutboundPackets\OutboundPacket03FileOperation.cs" />
     <Compile Include="Client\SentPacketCallback.cs" />
     <Compile Include="Client\MultiPartPacketHandler.cs" />
     <Compile Include="Client\OutboundPackets\OutboundPacket.cs" />

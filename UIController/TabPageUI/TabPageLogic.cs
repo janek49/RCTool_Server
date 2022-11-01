@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using UIController.ClientUI;
 
 namespace UIController.TabPageUI
@@ -14,6 +15,11 @@ namespace UIController.TabPageUI
         public TabPageLogic(ClientWindowLogic parent)
         {
             Parent = parent;
+        }
+
+        public virtual void OnExposedToControl(Control ctrl)
+        {
+
         }
     }
 }

@@ -30,6 +30,8 @@ namespace UIController.ClientUI
         {
             if (content is CT_WebCam ctWebcam)
                 InsertTabLogic(ctWebcam, new TabPageLogicWebCam(this));
+            else if(content is CT_FileSystem ctF) 
+                InsertTabLogic(ctF, new TabPageLogicFileSystem(this));
         }
 
 
@@ -38,6 +40,7 @@ namespace UIController.ClientUI
             if (TabPageLogicDict.ContainsKey(tab))
                 return;
             tab.DataContext = logic;
+            logic.OnExposedToControl(tab);
             TabPageLogicDict.Add(tab, logic);
         }
     }

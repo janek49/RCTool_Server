@@ -96,7 +96,15 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CT_FileSystem.xaml.cs">
+      <DependentUpon>CT_FileSystem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\FormatKbSizeConverter.cs" />
     <Compile Include="WpfGuiUtil.cs" />
+    <Page Include="CT_FileSystem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="CT_WebCam.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -248,6 +256,21 @@
     <Resource Include="Images\forbidden.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\username.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\file.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\folders-stack.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\arrow-up.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
